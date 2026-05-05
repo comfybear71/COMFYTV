@@ -278,7 +278,7 @@ export default function VodSeriesPage() {
 
         {grid && grid.series.length > 0 && (
           <>
-            <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
               {grid.series.map((s) => (
                 <PosterCard
                   key={s.seriesId}
