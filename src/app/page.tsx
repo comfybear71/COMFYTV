@@ -27,8 +27,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
-      {/*<div className="mx-auto max-w-7xl px-4 py-16">*/}
+    {/* <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-16">*/}
+      <div className="mx-auto max-w-7xl px-4 py-16">
       {/* Hero */}
       <div className="text-center">
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
