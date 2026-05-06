@@ -212,7 +212,7 @@ export default function VodSeriesPage() {
             href={webUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-2xl bg-purple-600 px-6 py-4 text-base font-semibold text-white hover:bg-purple-500 active:scale-95 transition flex items-center justify-center gap-2"
+            className="flex-1 rounded-2xl bg-purple-600 px-5 py-3 text-base font-semibold text-white hover:bg-purple-500 active:scale-95 transition flex items-center justify-center gap-2"
           >
             ▶ Watch (webplayer)
           </a>
@@ -278,7 +278,7 @@ export default function VodSeriesPage() {
 
         {grid && grid.series.length > 0 && (
           <>
-            <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
               {grid.series.map((s) => (
                 <PosterCard
                   key={s.seriesId}
@@ -386,8 +386,8 @@ function PosterCard({
           </span>
         )}
       </div>
-      <div className="p-3">
-        <div className="line-clamp-2 text-sm font-semibold text-white" title={title}>
+      <div className="p-2">
+        <div className="line-clamp-2 text-sm font-semibold text-white leading-tight" title={title}>
           {title}
         </div>
         {year && <div className="mt-1 text-xs text-slate-500">{year}</div>}
@@ -408,7 +408,7 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-3xl border px-5 py-2.5 text-sm font-medium transition active:scale-95 ${
+      className={`rounded-3xl border px-4 py-2 text-sm font-medium transition active:scale-95 ${
         active
           ? "border-blue-500 bg-blue-600 text-white"
           : "border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-600"
@@ -430,7 +430,7 @@ function CopyButton({ value }: { value: string }) {
           setTimeout(() => setCopied(false), 1500);
         } catch {}
       }}
-      className="flex-1 sm:flex-none rounded-2xl bg-slate-800 px-6 py-4 text-base font-medium text-slate-200 hover:bg-slate-700 active:scale-95 transition"
+      className="flex-1 sm:flex-none rounded-2xl bg-slate-800 px-5 py-3 text-base font-medium text-slate-200 hover:bg-slate-700 active:scale-95 transition"
     >
       {copied ? "✓ Copied!" : "📋 Copy URL"}
     </button>
