@@ -160,7 +160,7 @@ export default function VodSeriesPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
+    <div className="mx-auto max-w-7xl px-3 py-4 sm:px-4">
       <div className="flex items-center gap-3">
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-600/20 text-2xl">
           🎞️
@@ -168,8 +168,7 @@ export default function VodSeriesPage() {
         <div>
           <h1 className="text-2xl font-bold text-white">VOD Series</h1>
           <p className="text-sm text-slate-400">
-            Browse the latest, filter by year or genre, click to watch — or copy
-            the M3U URL for your TV app.
+            Browse the latest, filter by year or genre, click to watch — or copy the M3U URL for your TV app.
           </p>
         </div>
       </div>
@@ -188,7 +187,7 @@ export default function VodSeriesPage() {
             {latest.map((s) => (
               <div
                 key={s.seriesId}
-                className="w-36 flex-shrink-0 sm:w-40 lg:w-44"
+                className="w-32 flex-shrink-0 sm:w-36"
               >
                 <PosterCard
                   href={`/watch/series/${s.seriesId}`}
@@ -203,16 +202,17 @@ export default function VodSeriesPage() {
         )}
       </section>
 
+      {/* M3U Box - compact mobile version */}
       <div className="mt-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4">
         <p className="mb-3 text-xs text-slate-400">
           Using TiviMate / IPTV Smarters / VLC? Copy this filtered M3U URL.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col gap-3">
           <a
             href={webUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 rounded-2xl bg-purple-600 px-5 py-3 text-base font-semibold text-white hover:bg-purple-500 active:scale-95 transition flex items-center justify-center gap-2"
+            className="rounded-2xl bg-purple-600 px-5 py-3.5 text-base font-semibold text-white hover:bg-purple-500 active:scale-95 transition flex items-center justify-center gap-2"
           >
             ▶ Watch (webplayer)
           </a>
@@ -223,11 +223,12 @@ export default function VodSeriesPage() {
         </code>
       </div>
 
+      {/* Filters - horizontal scroll like real apps */}
       <div className="mt-6">
         <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
           📅 Filter by Year
         </h3>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-3 snap-x scrollbar-hide">
           {VOD_YEARS.map((y) => (
             <Chip key={y} label={y} active={year === y} onClick={() => setYear(y)} />
           ))}
@@ -238,7 +239,7 @@ export default function VodSeriesPage() {
         <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
           🏷 Filter by Genre
         </h3>
-        <div className="mt-3 flex flex-wrap gap-2">
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-3 snap-x scrollbar-hide">
           {SERIES_GENRES.map((g) => (
             <Chip
               key={g}
@@ -278,7 +279,8 @@ export default function VodSeriesPage() {
 
         {grid && grid.series.length > 0 && (
           <>
-            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+            {/* 2-column on mobile = perfect app feel */}
+            <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {grid.series.map((s) => (
                 <PosterCard
                   key={s.seriesId}
@@ -386,7 +388,7 @@ function PosterCard({
           </span>
         )}
       </div>
-      <div className="p-2">
+      <div className="p-2.5">
         <div className="line-clamp-2 text-sm font-semibold text-white leading-tight" title={title}>
           {title}
         </div>
@@ -408,7 +410,7 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-3xl border px-4 py-2 text-sm font-medium transition active:scale-95 ${
+      className={`rounded-3xl border px-5 py-2 text-sm font-medium transition active:scale-95 whitespace-nowrap ${
         active
           ? "border-blue-500 bg-blue-600 text-white"
           : "border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-600"
@@ -430,7 +432,7 @@ function CopyButton({ value }: { value: string }) {
           setTimeout(() => setCopied(false), 1500);
         } catch {}
       }}
-      className="flex-1 sm:flex-none rounded-2xl bg-slate-800 px-5 py-3 text-base font-medium text-slate-200 hover:bg-slate-700 active:scale-95 transition"
+      className="flex-1 rounded-2xl bg-slate-800 px-5 py-3.5 text-base font-medium text-slate-200 hover:bg-slate-700 active:scale-95 transition"
     >
       {copied ? "✓ Copied!" : "📋 Copy URL"}
     </button>
