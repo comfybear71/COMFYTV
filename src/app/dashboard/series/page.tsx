@@ -160,7 +160,7 @@ export default function VodSeriesPage() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8">
       <div className="flex items-center gap-3">
         <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-600/20 text-2xl">
           🎞️
@@ -184,7 +184,7 @@ export default function VodSeriesPage() {
         ) : latest.length === 0 ? (
           <div className="mt-3 text-xs text-slate-500">No latest yet.</div>
         ) : (
-          <div className="mt-3 flex gap-3 overflow-x-auto pb-2">
+          <div className="mt-3 flex gap-3 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
             {latest.map((s) => (
               <div
                 key={s.seriesId}
@@ -203,22 +203,22 @@ export default function VodSeriesPage() {
         )}
       </section>
 
-      <div className="mt-6 overflow-hidden rounded-xl border border-slate-800 bg-slate-900 p-4">
-        <p className="mb-2 text-xs text-slate-400">
+      <div className="mt-6 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 p-4">
+        <p className="mb-3 text-xs text-slate-400">
           Using TiviMate / IPTV Smarters / VLC? Copy this filtered M3U URL.
         </p>
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col sm:flex-row gap-3">
           <a
             href={webUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-lg bg-purple-600 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-500"
+            className="flex-1 rounded-2xl bg-purple-600 px-6 py-4 text-base font-semibold text-white hover:bg-purple-500 active:scale-95 transition flex items-center justify-center gap-2"
           >
             ▶ Watch (webplayer)
           </a>
           <CopyButton value={m3uUrl} />
         </div>
-        <code className="mt-2 block w-full break-all font-mono text-[11px] text-slate-400">
+        <code className="mt-4 block w-full break-all font-mono text-xs text-slate-400 leading-tight">
           {m3uUrl}
         </code>
       </div>
@@ -278,7 +278,7 @@ export default function VodSeriesPage() {
 
         {grid && grid.series.length > 0 && (
           <>
-            <div className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6">
+            <div className="mt-3 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
               {grid.series.map((s) => (
                 <PosterCard
                   key={s.seriesId}
@@ -361,7 +361,7 @@ function PosterCard({
   return (
     <Link
       href={href}
-      className="group flex w-full flex-col overflow-hidden rounded-xl border border-slate-800 bg-slate-900 transition hover:border-slate-600"
+      className="group flex w-full flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-900 transition hover:border-slate-600 active:scale-[0.97]"
     >
       <div className="relative aspect-[2/3] overflow-hidden bg-slate-950">
         {poster ? (
@@ -369,7 +369,7 @@ function PosterCard({
           <img
             src={poster}
             alt={title}
-            className="h-full w-full object-cover transition group-hover:scale-[1.02]"
+            className="h-full w-full object-cover transition group-hover:scale-[1.03]"
             loading="lazy"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
@@ -381,16 +381,16 @@ function PosterCard({
           </div>
         )}
         {rating > 0 && (
-          <span className="absolute right-1.5 top-1.5 rounded-md bg-black/70 px-1.5 py-0.5 text-[10px] font-bold text-amber-300 backdrop-blur-sm">
+          <span className="absolute right-2 top-2 rounded-lg bg-black/70 px-2 py-0.5 text-xs font-bold text-amber-300 backdrop-blur-sm">
             ⭐ {rating.toFixed(1)}
           </span>
         )}
       </div>
-      <div className="p-2">
-        <div className="truncate text-xs font-semibold text-white" title={title}>
+      <div className="p-3">
+        <div className="line-clamp-2 text-sm font-semibold text-white" title={title}>
           {title}
         </div>
-        {year && <div className="text-[10px] text-slate-500">{year}</div>}
+        {year && <div className="mt-1 text-xs text-slate-500">{year}</div>}
       </div>
     </Link>
   );
@@ -408,7 +408,7 @@ function Chip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full border px-3 py-1 text-xs transition ${
+      className={`rounded-3xl border px-5 py-2.5 text-sm font-medium transition active:scale-95 ${
         active
           ? "border-blue-500 bg-blue-600 text-white"
           : "border-slate-700 bg-slate-900 text-slate-300 hover:border-slate-600"
@@ -430,9 +430,9 @@ function CopyButton({ value }: { value: string }) {
           setTimeout(() => setCopied(false), 1500);
         } catch {}
       }}
-      className="rounded-lg bg-slate-800 px-3 py-2 text-xs text-slate-200 hover:bg-slate-700"
+      className="flex-1 sm:flex-none rounded-2xl bg-slate-800 px-6 py-4 text-base font-medium text-slate-200 hover:bg-slate-700 active:scale-95 transition"
     >
-      {copied ? "✓ Copied" : "📋 Copy URL"}
+      {copied ? "✓ Copied!" : "📋 Copy URL"}
     </button>
   );
 }
